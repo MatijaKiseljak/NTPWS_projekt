@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-img-top {
+            width: 40%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease-in-out;
+            margin-top: 30px;
+        }
+
+        .btn-primary:hover {
+            background-color: #004080;
+            border-color: #004080;
+            transform: scale(1.05);
+        }
+
+        .register-link {
+            color: #6c757d;
+        }
+
+        .register-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-primary {
+            margin: 0 auto;
+            display: block;
+            width: 50%;
+        }
+
+        .mb-lg {
+            margin-bottom: 2.5rem !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card shadow-sm">
+
+        <img src="{% static 'images/TVZ-logo.jpeg' %}" alt="Dobrodošli" class="card-img-top">
+
+        <div class="card-body form-container">
+            <h2 class="text-center mb-4" style="text-transform: none; font-weight: bold; font-size: 2.5rem; color: #004080; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); margin-bottom: 2rem;">
+                Registracija
+            </h2>
+            {% if success %}
+
+                <div class="alert alert-success text-center">
+                    Registracija uspješna! Sada se možete 
+                    <a href="{% url 'login' %}" style="text-transform: none;">prijaviti ovdje</a>.
+                </div>
+            {% else %}
+
+                <form method="post" action="" style="width: 100%;">
+                    {% csrf_token %}
+                    
+    
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Korisničko ime:</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ data.username|default_if_none:'' }}" required>
+                        {% if errors.username %}
+                            <div class="text-danger mt-1">{{ errors.username.0 }}</div>
+                        {% endif %}
+                    </div>
+
+   
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ data.email|default_if_none:'' }}" required>
+                        {% if errors.email %}
+                            <div class="text-danger mt-1">{{ errors.email.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">Ime:</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ data.first_name|default_if_none:'' }}" required>
+                        {% if errors.first_name %}
+                            <div class="text-danger mt-1">{{ errors.first_name.0 }}</div>
+                        {% endif %}
+                    </div>
+
+      
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Prezime:</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ data.last_name|default_if_none:'' }}" required>
+                        {% if errors.last_name %}
+                            <div class="text-danger mt-1">{{ errors.last_name.0 }}</div>
+                        {% endif %}
+                    </div>
+
+      
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Lozinka:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        {% if errors.password %}
+                            <div class="text-danger mt-1">{{ errors.password.0 }}</div>
+                        {% endif %}
+                    </div>
+
+               
+                    <div class="mb-3 mb-lg"> 
+                        <label for="password2" class="form-label">Potvrdite lozinku:</label>
+                        <input type="password" class="form-control" id="password2" name="password2" required>
+                        {% if errors.password2 %}
+                            <div class="text-danger mt-1">{{ errors.password2.0 }}</div>
+                        {% endif %}
+                    </div>
+
+              
+                    <button type="submit" class="btn btn-primary">Registracija</button>
+
+                 
+                    {% if errors.non_field_errors %}
+                        <div class="text-danger mt-3">{{ errors.non_field_errors.0 }}</div>
+                    {% endif %}
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

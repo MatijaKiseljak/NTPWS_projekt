@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalji prijave</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Osobni podaci</h2>
+        
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Polje</th>
+                    <th>Detalji</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Korisničko ime</th>
+                    <td>{{ prijava.user.username }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ime</th>
+                    <td>{{ prijava.user.first_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Prezime</th>
+                    <td>{{ prijava.user.last_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>{{ prijava.user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        {% block additional_details %}
+        <h2 class="mb-4 mt-5">Detalji prijave</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Polje</th>
+                    <th>Detalji</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{ block.super }}
+            </tbody>
+        </table>
+        {% endblock %}
+
+        <div class="actions mt-4 text-center">
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-primary btn-lg">Natrag na Dashboard</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

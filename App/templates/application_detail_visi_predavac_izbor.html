@@ -1,0 +1,106 @@
+{% extends "base_application_detail.html" %}
+{% load static %}
+
+{% block additional_details %}
+<div class="container mt-4">
+    <h2 class="mb-4">Detalji prijave za Viši predavač (Izbor)</h2>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Polje</th>
+                <th scope="col">Detalji</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Korisničko ime</th>
+                <td>{{ prijava.user.username }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Ime</th>
+                <td>{{ prijava.user.first_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Prezime</th>
+                <td>{{ prijava.user.last_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td>{{ prijava.user.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Pozicija</th>
+                <td>{{ pozicija }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Vrijeme kreiranja</th>
+                <td>{{ prijava.created_at }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Diploma dokument</th>
+                <td>
+                    {% if prijava.diploma_document %}
+                        <a href="{{ prijava.diploma_document.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj diplomu</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Broj održanih norma sati</th>
+                <td>{{ prijava.teaching_hours }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Link na Crosbi profil</th>
+                <td>
+                    {% if prijava.crosbi_profile_link %}
+                        <a href="{{ prijava.crosbi_profile_link }}" target="_blank">{{ prijava.crosbi_profile_link }}</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Nastavni materijal</th>
+                <td>
+                    {% if prijava.teaching_material %}
+                        <a href="{{ prijava.teaching_material.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj nastavni materijal</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Mentorstva</th>
+                <td>
+                    {% if prijava.mentoring %}
+                        <a href="{{ prijava.mentoring.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj mentorstva</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Sudjelovanje na domaćim ili međunarodnim skupovima</th>
+                <td>{{ prijava.gatherings|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Recenzirani znanstveni radovi</th>
+                <td>
+                    {% if prijava.reviewed_scientific_papers %}
+                        <a href="{{ prijava.reviewed_scientific_papers.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj recenzirane radove</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form method="post" action="{% url 'application_detail' prijava_id %}">
+    {% csrf_token %}
+    <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati ovu prijavu?');">
+        Obriši Prijavu
+    </button>
+</form>
+{% endblock %}

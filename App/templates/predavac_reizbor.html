@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upitnik za reizbor predavača</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+
+        .questionnaire-container {
+            min-height: calc(100vh - 150px); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+            padding-bottom: 1rem; 
+        }
+
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 1.5rem; 
+        }
+
+        .form-label {
+            font-weight: bold;
+            display: block; 
+            margin-bottom: 0.5rem; 
+            margin-top: 0.5rem; 
+        }
+
+        .form-control,
+        .form-select {
+            font-size: 1.1rem; 
+            padding: 0.75rem 1rem; 
+            height: auto; 
+            border-radius: 5px; 
+            border: 2px solid #ced4da; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #007bff; 
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+        }
+
+        .btn-custom {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-secondary {
+            margin-top: 10px; 
+        }
+
+        
+        .card-title {
+            font-size: 2rem; 
+            font-weight: bold; 
+            margin-bottom: 2rem; 
+            text-align: center; 
+        }
+
+        .form-check-inline {
+            display: inline-block;
+            margin-right: 15px; 
+        }
+
+        .form-check-input {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="questionnaire-container">
+        <div class="card card-custom">
+           
+            <h2 class="card-title" style="text-transform: none;">Upitnik za reizbor predavača</h2>
+
+          
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-4">
+                
+                    <div class="mb-3">
+                        <label for="is_elected_lecturer" class="form-label">Jeste li bili izabrani na nastavno mjesto predavača?</label>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="is_elected_lecturer_yes" name="is_elected_lecturer" value="Da" class="form-check-input" required>
+                            <label for="is_elected_lecturer_yes" class="form-check-label">Da</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="is_elected_lecturer_no" name="is_elected_lecturer" value="Ne" class="form-check-input" required>
+                            <label for="is_elected_lecturer_no" class="form-check-label">Ne</label>
+                        </div>
+                    </div>
+
+                   
+                    <div class="mb-3">
+                        <label for="teaching_hours" class="form-label">Broj održanih sati nastave:</label>
+                        <input type="number" id="teaching_hours" name="teaching_hours" class="form-control" required>
+                    </div>
+
+               
+                    <div class="mb-3">
+                        <label for="published_works_count" class="form-label">Broj objavljenih stručnih radova:</label>
+                        <input type="number" id="published_works_count" name="published_works_count" class="form-control" required>
+                    </div>
+
+                  
+                    <div class="mb-3">
+                        <label for="papers_documents" class="form-label">Priložite svoje radove (ZIP format ako ih ima više):</label>
+                        <input type="file" id="papers_documents" name="papers_documents" class="form-control">
+                    </div>
+
+                
+                    <div class="mb-3">
+                        <label for="project_leadership_experience" class="form-label">Imate li iskustvo vođenja ili suvoditeljstva na projektima?</label>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="project_leadership_yes" name="project_leadership_experience" value="Da" class="form-check-input" required>
+                            <label for="project_leadership_yes" class="form-check-label">Da</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="project_leadership_no" name="project_leadership_experience" value="Ne" class="form-check-input" required>
+                            <label for="project_leadership_no" class="form-check-label">Ne</label>
+                        </div>
+                    </div>
+                </div>
+
+         
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-custom">Pošalji</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+  
+    <div class="container text-center">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-lg" style="text-transform: none;">Natrag na Dashboard</a>
+    </div>
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

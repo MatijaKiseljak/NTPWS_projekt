@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uspješno!</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .card-text {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+
+        .btn-custom {
+            width: 100%;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            color: #ffffff;
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-custom:hover,
+        .btn-custom:focus,
+        .btn-custom:active {
+            background-color: #007bff;
+            color: #ffffff;
+            transform: none;
+            box-shadow: none; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="card card-custom">
+
+            <h2 class="card-title">Uspjeh!</h2>
+            <p class="card-text">{{ message }}</p>
+
+
+            <form action="{% url 'dashboard' %}" method="get">
+                <button type="submit" class="btn btn-custom">Povratak na Dashboard</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

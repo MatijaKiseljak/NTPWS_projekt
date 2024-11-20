@@ -1,0 +1,117 @@
+{% extends 'CMS_Base.html' %}
+
+{% block title %}CMS Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0 fw-bold" style="color: #333333;">CMS Dashboard - Prikaz svih prijava</h2>
+    </div>
+
+    <form method="get" class="mb-4 p-4 rounded shadow-sm bg-light">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-3">
+                <label for="filter_position" class="form-label fw-bold text-secondary">Filtriraj po poziciji:</label>
+                <select id="filter_position" name="filter_position" class="form-select form-select-lg custom-select-style">
+                    <option value="">Sve pozicije</option>
+                    <option value="Predavač - Izbor" {% if filter_position == 'Predavač - Izbor' %}selected{% endif %}>Predavač - Izbor</option>
+                    <option value="Predavač - Reizbor" {% if filter_position == 'Predavač - Reizbor' %}selected{% endif %}>Predavač - Reizbor</option>
+                    <option value="Viši predavač - Izbor" {% if filter_position == 'Viši predavač - Izbor' %}selected{% endif %}>Viši predavač - Izbor</option>
+                    <option value="Viši predavač - Reizbor" {% if filter_position == 'Viši predavač - Reizbor' %}selected{% endif %}>Viši predavač - Reizbor</option>
+                    <option value="Profesor stručnog studija - Izbor" {% if filter_position == 'Profesor stručnog studija - Izbor' %}selected{% endif %}>Profesor stručnog studija - Izbor</option>
+                    <option value="Profesor stručnog studija - Reizbor" {% if filter_position == 'Profesor stručnog studija - Reizbor' %}selected{% endif %}>Profesor stručnog studija - Reizbor</option>
+                    <option value="Profesor stručnog studija - Trajni" {% if filter_position == 'Profesor stručnog studija - Trajni' %}selected{% endif %}>Profesor stručnog studija - Trajni</option>
+                </select>
+            </div>
+        
+            <div class="col-md-3">
+                <label for="order_by" class="form-label fw-bold text-secondary">Sortiraj po vremenu:</label>
+                <select id="order_by" name="order_by" class="form-select form-select-lg custom-select-style">
+                    <option value="asc" {% if order_by == 'asc' %}selected{% endif %}>Uzlazno (najstarije prvo)</option>
+                    <option value="desc" {% if order_by == 'desc' %}selected{% endif %}>Silazno (najnovije prvo)</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="search" class="form-label fw-bold text-secondary">Pretraži po imenu ili prezimenu:</label>
+                <input type="text" id="search" name="search" class="form-control form-control-lg" placeholder="Unesite ime ili prezime" value="{{ search }}">
+            </div>
+
+<div class="col-md-2 d-flex align-items-end">
+    <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #004080; border-color: #004080; margin-top: 32px;">Filtriraj</button>
+</div>
+        </div>
+    </form>
+
+    <div class="table-responsive p-3 rounded shadow-sm bg-white">
+        <table class="table table-bordered table-hover table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Ime</th>
+                    <th scope="col">Prezime</th>
+                    <th scope="col">Pozicija</th>
+                    <th scope="col">Vrijeme kreiranja</th>
+                    <th scope="col" class="text-center">Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prijava in sve_prijave %}
+                    <tr>
+                        <td>{{ prijava.ime }}</td>
+                        <td>{{ prijava.prezime }}</td>
+                        <td>{{ prijava.pozicija }}</td>
+                        <td>{{ prijava.vrijeme_kreiranja|date:"d.m.Y. H:i" }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'application_detail' prijava.id %}" class="btn btn-sm" style="background-color: #004080; color: #ffffff;">Detalji</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center text-secondary fw-bold">Nema dostupnih prijava.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .custom-select-style {
+        appearance: none; 
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #f8f9fa;
+        color: #333;
+        border: 1px solid #004080; 
+        border-radius: 5px;
+        padding: 10px 16px;
+        width: 100%;
+        font-size: 1rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .custom-select-style:focus {
+        border-color: #004080;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 64, 128, 0.5); 
+    }
+
+    .custom-dropdown::after {
+        content: '▼'; 
+        font-size: 0.8rem;
+        color: #004080; 
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upitnik za reizbor profesora stručnog studija</title>
+ 
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      
+        .questionnaire-container {
+            min-height: calc(100vh - 150px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .card-custom {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control,
+        .form-select {
+            font-size: 1.1rem;
+            padding: 0.75rem 1rem;
+            height: auto;
+            border-radius: 5px;
+            border: 2px solid #ced4da;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-custom {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .form-check-inline {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .form-check-label {
+            margin-left: 5px;
+        }
+
+      
+        .card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="questionnaire-container">
+        <div class="card card-custom">
+           
+            <h2 class="card-title" style="text-transform: none;">Upitnik za reizbor profesora stručnog studija</h2>
+
+           
+            <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                  
+                    <div class="col-md-6">
+                      
+                        <div class="mb-3">
+                            <label class="form-label">Jeste li objavili recenzirani nastavnički materijal za predmet?</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="has_reviewed_teaching_material_yes" name="has_reviewed_teaching_material" value="da" class="form-check-input" required>
+                                <label for="has_reviewed_teaching_material_yes" class="form-check-label">Da</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="has_reviewed_teaching_material_no" name="has_reviewed_teaching_material" value="ne" class="form-check-input" required>
+                                <label for="has_reviewed_teaching_material_no" class="form-check-label">Ne</label>
+                            </div>
+                        </div>
+
+                       
+                        <div class="mb-3">
+                            <label for="mentorship_theses_count" class="form-label">Broj mentoriranih završnih i/ili diplomskih radova (min. 7):</label>
+                            <input type="number" id="mentorship_theses_count" name="mentorship_theses_count" class="form-control" required>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="coauthored_papers_with_students_count" class="form-label">Broj radova koautorstava sa studentima (min. 3):</label>
+                            <input type="number" id="coauthored_papers_with_students_count" name="coauthored_papers_with_students_count" class="form-control" required>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="international_papers_count" class="form-label">Broj međunarodnih radova predstavljenih na konferencijama (min. 2):</label>
+                            <input type="number" id="international_papers_count" name="international_papers_count" class="form-control" required>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="exhibitions_count" class="form-label">Broj organiziranih umjetničkih izložbi (min. 5):</label>
+                            <input type="number" id="exhibitions_count" name="exhibitions_count" class="form-control" required>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="google_scholar_citations" class="form-label">Broj novih potvrđenih Google Scholar citata (min. 20):</label>
+                            <input type="number" id="google_scholar_citations" name="google_scholar_citations" class="form-control" required>
+                        </div>
+                    </div>
+
+                  
+                    <div class="col-md-6">
+                      
+                        <div class="mb-3">
+                            <label for="presented_papers_count" class="form-label">Broj radova predstavljenih na konferencijama (min. 4):</label>
+                            <input type="number" id="presented_papers_count" name="presented_papers_count" class="form-control" required>
+                        </div>
+
+                      
+                        <div class="mb-3">
+                            <label class="form-label">Sudjelovali ste u međunarodnoj mobilnosti ili stručnom usavršavanju?</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="participated_in_international_mobility_yes" name="participated_in_international_mobility" value="da" class="form-check-input" required>
+                                <label for="participated_in_international_mobility_yes" class="form-check-label">Da</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="participated_in_international_mobility_no" name="participated_in_international_mobility" value="ne" class="form-check-input" required>
+                                <label for="participated_in_international_mobility_no" class="form-check-label">Ne</label>
+                            </div>
+                        </div>
+
+                      
+                        <div class="mb-3">
+                            <label class="form-label">Jeste li vodili međunarodni projekt ili značajno doprinosili jednom?</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="led_international_project_yes" name="led_international_project" value="da" class="form-check-input" required>
+                                <label for="led_international_project_yes" class="form-check-label">Da</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="led_international_project_no" name="led_international_project" value="ne" class="form-check-input" required>
+                                <label for="led_international_project_no" class="form-check-label">Ne</label>
+                            </div>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Jeste li primili međunarodnu ili značajnu domaću nagradu za obrazovni, znanstveni ili umjetnički doprinos?</label>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="received_award_yes" name="received_award" value="da" class="form-check-input" required>
+                                <label for="received_award_yes" class="form-check-label">Da</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" id="received_award_no" name="received_award" value="ne" class="form-check-input" required>
+                                <label for="received_award_no" class="form-check-label">Ne</label>
+                            </div>
+                        </div>
+
+                       
+                        <div class="mb-3">
+                            <label for="reviewed_academic_manuals" class="form-label">Broj recenziranih udžbenika ili akademskih priručnika (min. 1):</label>
+                            <input type="number" id="reviewed_academic_manuals" name="reviewed_academic_manuals" class="form-control" required>
+                        </div>
+
+                   
+                        <div class="mb-3">
+                            <label for="attended_professional_workshops" class="form-label">Broj stručnih radionica na kojima ste sudjelovali u relevantnom znanstvenom području (min. 5):</label>
+                            <input type="number" id="attended_professional_workshops" name="attended_professional_workshops" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+
+          
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-custom">Pošalji</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="container text-center">
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-lg" style="text-transform: none;">Natrag na Dashboard</a>
+    </div>
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>

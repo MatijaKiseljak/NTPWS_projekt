@@ -1,0 +1,49 @@
+{% extends "base_application_detail.html" %}
+{% load static %}
+
+{% block additional_details %}
+    <h2 class="mb-4 mt-5">Detalji prijave za Predavač (Reizbor)</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Polje</th>
+                <th>Detalji</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Jeste li bili izabrani na nastavno mjesto predavača</th>
+                <td>{{ prijava.is_elected_lecturer|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj održanih norma sati</th>
+                <td>{{ prijava.teaching_hours }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj objavljenih stručnih, znanstvenih ili umjetničkih radova</th>
+                <td>{{ prijava.published_works_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Radovi dokumenti</th>
+                <td>
+                    {% if prijava.papers_documents %}
+                        <a href="{{ prijava.papers_documents.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj radove</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Imate li iskustvo vođenja ili suvoditeljstva na projektima?</th>
+                <td>{{ prijava.project_leadership_experience|yesno:"Da,Ne" }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="post" action="{% url 'application_detail' prijava_id %}">
+        {% csrf_token %}
+        <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati ovu prijavu?');">
+            Obriši Prijavu
+        </button>
+    </form>
+{% endblock %}

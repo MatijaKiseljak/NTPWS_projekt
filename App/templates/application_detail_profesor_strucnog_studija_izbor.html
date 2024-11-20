@@ -1,0 +1,110 @@
+{% extends "base_application_detail.html" %}
+{% load static %}
+
+{% block additional_details %}
+<div class="container mt-4">
+    <h2 class="mb-4">Detalji prijave za Profesor stručnog studija (Izbor)</h2>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Polje</th>
+                <th scope="col">Detalji</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Korisničko ime</th>
+                <td>{{ prijava.user.username }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Ime</th>
+                <td>{{ prijava.user.first_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Prezime</th>
+                <td>{{ prijava.user.last_name }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td>{{ prijava.user.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Pozicija</th>
+                <td>{{ pozicija }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Vrijeme kreiranja</th>
+                <td>{{ prijava.created_at }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Doktorska diploma ili alternativni znanstveni doprinos</th>
+                <td>
+                    {% if prijava.doctorate_or_alternative %}
+                        <a href="{{ prijava.doctorate_or_alternative.url }}" target="_blank" class="btn btn-sm btn-outline-primary">Pogledaj doktorsku diplomu</a>
+                    {% else %}
+                        Nije dostavljeno
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Broj održanih norma sati nastave</th>
+                <td>{{ prijava.teaching }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Objavljeni recenzirani nastavni materijal</th>
+                <td>{{ prijava.reviewed_teaching_material|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj mentoriranih završnih i diplomskih radova</th>
+                <td>{{ prijava.mentorship_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj radova koautorstava sa studentima</th>
+                <td>{{ prijava.coauthored_papers_with_students }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj radova predstavljenih na konferencijama</th>
+                <td>{{ prijava.presented_papers_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj međunarodnih radova</th>
+                <td>{{ prijava.international_papers_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Sudjelovanje u međunarodnoj mobilnosti</th>
+                <td>{{ prijava.participated_in_international_mobility|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Vođenje međunarodnog projekta</th>
+                <td>{{ prijava.led_international_project|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Primljena međunarodna ili značajna domaća nagrada</th>
+                <td>{{ prijava.received_international_award|yesno:"Da,Ne" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj novih Google Scholar citata</th>
+                <td>{{ prijava.google_scholar_citations }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj organiziranih umjetničkih izložbi</th>
+                <td>{{ prijava.exhibitions_count }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj recenziranih akademskih priručnika</th>
+                <td>{{ prijava.reviewed_academic_manuals }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Broj sudjelovanja na stručnim radionicama</th>
+                <td>{{ prijava.attended_professional_workshops }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form method="post" action="{% url 'application_detail' prijava_id %}">
+    {% csrf_token %}
+    <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Jeste li sigurni da želite obrisati ovu prijavu?');">
+        Obriši Prijavu
+    </button>
+</form>
+{% endblock %}

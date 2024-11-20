@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .custom-card {
+            background-color: rgba(255, 255, 255, 0.85); 
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-container {
+            min-height: 100vh;
+            background: url('{% static "images/TVZ.jpeg" %}') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .btn-custom {
+            width: 150px;
+            height: 40px; 
+            font-size: 1.2rem;
+            margin: 0 5px;
+            font-weight: bold;
+            border: 1px solid transparent;
+            transition: none;
+            box-shadow: none;
+            transform: none; 
+        }
+
+        .btn-success-custom {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-primary-custom {
+            background-color: #4078c0;
+            border-color: #4078c0;
+        }
+
+        .btn-custom:hover,
+        .btn-custom:focus,
+        .btn-custom:active {
+            background-color: inherit; 
+            color: inherit;
+            transform: none; 
+            box-shadow: none; 
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center; 
+            gap: 10px; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-container">
+        <div class="custom-card text-center">
+            <h1 class="mb-4">Dobrodošli U Naš Sustav!</h1>
+            <p class="mb-4">Molimo vas da se registrirate ili prijavite kako biste nastavili.</p>
+            <div class="button-group">
+                <form action="{% url 'register' %}" method="get">
+                    <button type="submit" class="btn btn-success btn-custom btn-success-custom">Registriraj se</button>
+                </form>
+                <form action="{% url 'login' %}" method="get">
+                    <button type="submit" class="btn btn-primary btn-custom btn-primary-custom">Prijavi se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+
+</html>
