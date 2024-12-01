@@ -1,19 +1,17 @@
-from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from django.contrib.auth import authenticate
 
 from .views import (RegisterView, HomeView, DashboardView, CMSDashboardView, CMSRegisterView, 
 PredavacIzborView, PredavacReizborView, VisiPredavacIzborView, VisiPredavacReizborView, 
 ProfesorStrucnogStudijaIzborView, ProfesorStrucnogStudijaReizborView, ProfesorStrucnogStudijaTrajniView,
 QuestionnaireRedirectView, ApplicationDetailView  )
 
-from django.conf import settings
-from django.conf.urls.static import static
-from django.http import HttpResponseForbidden
-from django.contrib import messages
-from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate
-from . import views
+
 
 def user_login_view(request, *args, **kwargs):
     if request.method == "POST":

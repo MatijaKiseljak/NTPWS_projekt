@@ -1,7 +1,17 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
+from django.views import View
+from django.contrib import messages
+from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import redirect
+from django.db.models import Q
+from rest_framework.response import Response
+from rest_framework import status
+from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.decorators import method_decorator
 
 from .serializers import (
     RegisterSerializer, CMSRegistrationSerializer,
@@ -11,28 +21,12 @@ from .serializers import (
     ProfesorStrucnogStudijaTrajniSerializer,
     )
 
-from rest_framework.response import Response
-from rest_framework import status
-from django.views.generic import TemplateView
-from rest_framework_simplejwt.authentication import JWTAuthentication   
-from rest_framework.permissions import IsAuthenticated
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.decorators import method_decorator
-
 from .models import (
     PredavacIzborModel,PredavacReizborModel, 
     VisiPredavacIzborModel, VisiPredavacReizborModel, 
     ProfesorStrucnogStudijaIzborModel, ProfesorStrucnogStudijaReizborModel, ProfesorStrucnogStudijaTrajniModel, Prijava
     )
-from django.contrib.auth import authenticate
-from django.views import View
-from django.contrib.auth import login
-from django.contrib import messages
-from django.contrib.contenttypes.models import ContentType
-from django.shortcuts import get_object_or_404, redirect
-from django.db.models import Q
+
 
 class HomeView(TemplateView):
     template_name = 'home_page.html'
