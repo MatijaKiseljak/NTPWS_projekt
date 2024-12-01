@@ -91,10 +91,10 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',  # Ako želite i osnovnu autentifikaciju
+        'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',  # Omogućava pristup samo ulogiranim korisnicima
+        'rest_framework.permissions.IsAuthenticated', 
     ),
 }
 
