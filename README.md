@@ -26,7 +26,7 @@ This project is a web-based system designed to facilitate job applications for v
 
 ## API Endpoints
 - **Authentication**
-POST /register/: Register a new user.
+  - POST `/register/`: Register a new user.
 POST /login/: Login for applicants.
 POST /admin-login/: Login for administrators.
 POST /logout/: Logout.
