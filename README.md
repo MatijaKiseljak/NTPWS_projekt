@@ -8,15 +8,15 @@ This project is a web-based system designed to facilitate job applications for v
   - Role-based access to ensure secure and appropriate interactions.
 - **Application Process:**
 
-Support for multiple job positions including lecturer, senior lecturer, and professor roles.
-Dynamic forms tailored to the requirements of specific job positions.
+  - Support for multiple job positions including lecturer, senior lecturer, and professor roles.
+  - Dynamic forms tailored to the requirements of specific job positions.
 - **Administrative Panel:**
 
-Review and manage job applications.
-Filter, search, and sort applications for efficient handling.
+  - Review and manage job applications.
+  - Filter, search, and sort applications for efficient handling.
 - **File Uploads:**
 
-Secure upload and storage of supporting documents such as diplomas, teaching materials, and research papers.
+  - Secure upload and storage of supporting documents such as diplomas, teaching materials, and research papers.
 ## Technology Stack
 - **Backend**
 The backend is built using the Django REST Framework, providing robust API endpoints to handle user authentication, application management, and data validation.
