@@ -24,7 +24,7 @@ The backend is built using the Django REST Framework, providing robust API endpo
 - **Frontend**
 The frontend utilizes HTML and CSS, offering a user-friendly interface for both applicants and administrators.
 
-##API Endpoints
+## API Endpoints
 - **Authentication**
 POST /register/: Register a new user.
 POST /login/: Login for applicants.
