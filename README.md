@@ -1,4 +1,4 @@
-Job Application Management System for Zagreb University of Applied Sciences
+# Job Application Management System for Zagreb University of Applied Sciences
 This project is a web-based system designed to facilitate job applications for various academic positions at Zagreb University of Applied Sciences. It was developed as part of a university course project.
 
 Features
