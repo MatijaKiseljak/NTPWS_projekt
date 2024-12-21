@@ -4,8 +4,8 @@ This project is a web-based system designed to facilitate job applications for v
 ## Features
 - **User Management:**
 
-Registration and login for applicants and administrators.
-Role-based access to ensure secure and appropriate interactions.
+  - Registration and login for applicants and administrators.
+  - Role-based access to ensure secure and appropriate interactions.
 - **Application Process:**
 
 Support for multiple job positions including lecturer, senior lecturer, and professor roles.
