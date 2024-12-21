@@ -19,7 +19,7 @@ This project is a web-based system designed to facilitate job applications for v
   - Secure upload and storage of supporting documents such as diplomas, teaching materials, and research papers.
 ## Technology Stack
 - **Backend**
-The backend is built using the Django REST Framework, providing robust API endpoints to handle user authentication, application management, and data validation.
+- The backend is built using the Django REST Framework, providing robust API endpoints to handle user authentication, application management, and data validation.
 
 - **Frontend**
 The frontend utilizes HTML and CSS, offering a user-friendly interface for both applicants and administrators.
